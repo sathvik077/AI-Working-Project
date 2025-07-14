@@ -24,6 +24,9 @@ if [ "${edgeDevice}" = "Raspberry Pi" ] || [ "${edgeDevice}" = "Orange Pi" ] ||
     moduleInstallErrors="Unable to install on Pi, ROCK or Jetson hardware."
 fi
 
+# YOLO uses old setuptools
+updateSetupTools=false
+
 # For Jetson, we need to install Torch before the other packages.
 # A huge thanks to QEngineering: https://qengineering.eu/install-pytorch-on-jetson-nano.html
 if [ "$moduleInstallErrors" = "" ] && [ "$edgeDevice" = "Jetson" ]; then 

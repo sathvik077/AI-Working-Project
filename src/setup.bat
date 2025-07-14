@@ -59,9 +59,9 @@ set downloadTimeout=900
 :: The .NET version to install. NOTE: Only major version matters unless we use manual install
 :: scripts, in which case we need to specify version. Choose version that works for all platforms
 :: since the versions of these are not in always in sync
-set dotNetTarget=net9.0
-set dotNetRuntimeVersion=9.0.0
-set dotNetSDKVersion=9.0.100
+set dotNetTarget=net10.0
+set dotNetRuntimeVersion=9.0.7
+set dotNetSDKVersion=9.0.302
 
 :: Show output in wild, crazy colours. Use --no-color to not use colour
 set useColor=true

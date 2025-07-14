@@ -63,18 +63,18 @@ def dump_tensors():
     Use the garbage collector to list the currently resident tensors
     """
     import gc
-    import torch
     for obj in gc.get_objects():
         try:
+            import torch
             if torch.is_tensor(obj) or (hasattr(obj, 'data') and torch.is_tensor(obj.data)):
                 print(type(obj), obj.size())
         except:
             pass
 
-
+"""
 # NOTE: This is now DEPRECATED. Please use `check_requirements` in utils/environment_check.py instead
-def check_installed_packages(requirements_path: str = None, report_version_conflicts = True) -> str:
-    """
+def check_installed_packages(requirements_path: str = "", report_version_conflicts = True) -> str:
+    " ""
     Generates a report on the packages that are missing or have version
     conflicts, based on the supplied requirements.txt file
     Ref: https://stackoverflow.com/a/45474387/
@@ -82,7 +82,7 @@ def check_installed_packages(requirements_path: str = None, report_version_confl
     example:
         requirements_path = Path(__file__).parent.with_name("requirements.txt")
         print(packageInstallReport(requirements_path))
-    """
+    " ""
 
     import pkg_resources
 
@@ -127,3 +127,4 @@ def check_installed_packages(requirements_path: str = None, report_version_confl
         report = "SUCCESS: All packages in requirements file are present"
 
     return report.strip()
+"""

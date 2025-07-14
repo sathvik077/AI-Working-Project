@@ -1112,6 +1112,10 @@ function setupPython () {
     #  - pythonName        - python name in "pythonXY" format
     #  - venvPythonCmdPath - the path to the python interpreter for this venv
     #  - virtualEnvDirPath - the path to the virtual environment for this module
+    #  - updateSetupTools  - if true, update setup tools
+
+    # writeLine "updateSetupTools = ${updateSetupTools}. " $color_warn
+
 
     if [ "$offlineInstall" = true ]; then 
         writeLine "Offline Installation: Unable to download and install Python." $color_error
@@ -1596,10 +1600,18 @@ function setupPython () {
         fi
 
         realDir=$(realpath "${pythonDirPath}" 2>/dev/null)
-        mountPoint=$(df --output=target "${realDir}" | tail -n 1)
-        fileSystemType=$(findmnt -n -o FSTYPE -T "${realDir}")
+        if [ "$os" = "macos" ]; then
+            # Not reliable, not needed in macOS
+            # mountPoint=$(df "${realDir}" | tail -1 | awk '{print $NF}')
+            # fileSystemType=$(mount | grep "on ${mountPoint} " | awk '{print $5}')
+            fileSystemType="local"
+        else
+            # mountPoint=$(df --output=target "${realDir}" | tail -n 1)
+            fileSystemType=$(findmnt -n -o FSTYPE -T "${realDir}")
+        fi
 
-        writeLine "File system is ${fileSystemType}" $color_info
+        write "File system is ${fileSystemType} " $color_info
+
         venvFlag=""
         if [ $fileSystemType = "exfat" ]; then venvFlag="--copies"; fi
 
@@ -1640,12 +1652,14 @@ function setupPython () {
     writeLine 'done' $color_success
 
     #hack
-    #if [ "$os" = "linux" ]; then
+    # if [ "$updateSetupTools" = true ]; then
+    # This may be better done within individual modules. Maybe
+    if [ $(versionCompare "${pythonVersion}" '3.9.1') = "1" ]; then # only update if python > 3.9
         write 'Installing updated setuptools in venv...' $color_primary
         "$venvPythonCmdPath" -m pip install -U setuptools >/dev/null 2>/dev/null &
         spin $!
         writeLine "done" $color_success
-    #fi
+    fi
 
     return 0
 }

@@ -71,8 +71,8 @@ downloadTimeout=900
 # version that works for all platforms since the SDK and runtime versions are
 # generally not the same (usually differences in the minor or patch version)
 dotNetTarget=net9.0
-dotNetRuntimeVersion=9.0.0
-dotNetSDKVersion=9.0.100
+dotNetRuntimeVersion=9.0.7
+dotNetSDKVersion=9.0.302
 
 # Show output in wild, crazy colours. Use --no-color to not use colour
 useColor=true
@@ -124,6 +124,10 @@ skipPipInstall=false
 # often doesn't actually solve problems either. Overall it's safer, but not a
 # panacea
 oneStepPIP=false
+
+# A HACK. We update setuptools to work around bugs, but updating it can cause
+# bugs. Python's PIP ecosystem is the wild west. Disable to work unbug if bug.
+updateSetupTools=true
 
 # Whether or not to use the jq utility for JSON parsing
 useJq=true
@@ -388,12 +392,14 @@ function saveState () {
     stateCurrentDir="$(pwd)"
     stateVerbosity="$verbosity"
     stateOneStepPIP="$oneStepPIP"
+    stateUpdateSetupTools="$updateSetupTools"
 }
 
 function restoreState () {
     cd "$stateCurrentDir" >/dev/null
     verbosity="$stateVerbosity"
     oneStepPIP="$stateOneStepPIP"
+    updateSetupTools="$stateUpdateSetupTools"
 }
 
 function doModuleInstall () {
