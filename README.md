@@ -13,7 +13,7 @@
 
 A standalone, self-hosted, fast, free and Open Source Artificial Intelligence microserver for any 
 platform, any language. It can be installed locally, required no off-device or out of network data
-transfer, and is easy to use.
+transfer, and is easy to use..
 
 ![Object detection](https://codeproject.github.io/codeproject.ai/img/DetectThings.png)
 
