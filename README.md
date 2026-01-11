@@ -30,7 +30,7 @@ transfer, and is easy to use..
 
 # Why
 
-1. AI programming is something every single developer should be aware of. We wanted a fun project we could use to help teach developers and get them involved in AI. We'll be using CodeProject.AI as a focus for articles and exploration to make it fun and painless to learn AI programming.
+1. AI programming is something every single developer should be aware of. We wanted a fun project we could use to help teach developers and get them involved in AI. We'll be using CodeProject.AI as a focus for articles and exploration to make it fun and painless to learn AI programming..
 
 3. We got sick of fighting versions and libraries and models and being blocked by tiny annoying things every step of the way. So we put put this together so we could save you the frustration. We'll take care of the housekeeping, you focus on the code.
   
